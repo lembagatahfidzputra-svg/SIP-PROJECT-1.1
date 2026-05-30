@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login Sekolah</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICON -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#0f172a;
+      padding:20px;
+    }
+
+    .login-box{
+      width:100%;
+      max-width:380px;
+
+      background:#1e293b;
+      padding:35px;
+      border-radius:28px;
+
+      border:1px solid rgba(255,255,255,0.05);
+
+      box-shadow:
+      0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .logo{
+      width:80px;
+      height:80px;
+
+      margin:auto;
+      margin-bottom:20px;
+
+      border-radius:20px;
+
+      background:rgba(56,189,248,0.15);
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      color:#38bdf8;
+      font-size:35px;
+    }
+
+    h2{
+      text-align:center;
+      color:white;
+      margin-bottom:8px;
+      font-size:28px;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#94a3b8;
+      margin-bottom:30px;
+      font-size:14px;
+    }
+
+    .input-box{
+      margin-bottom:18px;
+    }
+
+    .input-box label{
+      display:block;
+      margin-bottom:8px;
+      color:#cbd5e1;
+      font-size:14px;
+    }
+
+    .input-field{
+      position:relative;
+    }
+
+    .input-field i{
+      position:absolute;
+      top:50%;
+      left:15px;
+      transform:translateY(-50%);
+      color:#64748b;
+    }
+
+    .input-field input{
+      width:100%;
+      padding:14px 14px 14px 45px;
+
+      border:none;
+      outline:none;
+
+      border-radius:14px;
+
+      background:#0f172a;
+      color:white;
+
+      font-size:15px;
+    }
+
+    .input-field input::placeholder{
+      color:#64748b;
+    }
+
+    .login-btn{
+      width:100%;
+      padding:14px;
+
+      border:none;
+      border-radius:14px;
+
+      background:#38bdf8;
+      color:white;
+
+      font-size:16px;
+      font-weight:600;
+
+      cursor:pointer;
+
+      transition:.3s;
+    }
+
+    .login-btn:hover{
+      background:#0ea5e9;
+    }
+
+    .info{
+      margin-top:25px;
+      text-align:center;
+      color:#64748b;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <!-- LOGO -->
+
+    <div class="logo">
+      <i class="fa-solid fa-school"></i>
+    </div>
+
+    <!-- TITLE -->
+
+    <h2>Login Pesantren</h2>
+
+    <p class="subtitle">
+      Sistem Informasi Pesantren Qur'an
+    </p>
+
+    <!-- FORM -->
+
+    <form id="loginForm">
+
+      <!-- USERNAME -->
+
+      <div class="input-box">
+
+        <label>Username</label>
+
+        <div class="input-field">
+
+          <i class="fa-solid fa-user"></i>
+
+          <input
+          type="text"
+          id="username"
+          placeholder="Masukkan username"
+          required>
+
+        </div>
+
+      </div>
+
+      <!-- PASSWORD -->
+
+      <div class="input-box">
+
+        <label>Password</label>
+
+        <div class="input-field">
+
+          <i class="fa-solid fa-lock"></i>
+
+          <input
+          type="password"
+          id="password"
+          placeholder="Masukkan password"
+          required>
+
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+
+      <button type="submit" class="login-btn">
+        Masuk
+      </button>
+
+    </form>
+
+    <!-- INFO -->
+
+    <div class="info">
+
+      Login Role:<br>
+
+      Kepala Sekolah → kepsek / 123<br>
+      Wakil → wakil / 123<br>
+      Guru → guru / 123
+
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      const username =
+      document.getElementById("username").value;
+
+      const password =
+      document.getElementById("password").value;
+
+      // KEPALA SEKOLAH
+
+      if(username === "kepsek" &&
+      password === "123"){
+
+        localStorage.setItem("role", "kepsek");
+        localStorage.setItem("username", username);
+
+        window.location.href = "kepsek.html";
+      }
+
+      // WAKIL
+
+      else if(username === "wakil" &&
+      password === "123"){
+
+        localStorage.setItem("role", "wakil");
+        localStorage.setItem("username", username);
+
+        window.location.href = "wakil.html";
+      }
+
+      // GURU
+
+      else if(username === "guru" &&
+      password === "123"){
+
+        localStorage.setItem("role", "guru");
+        localStorage.setItem("username", username);
+
+        window.location.href = "guru.html";
+      }
+
+      // LOGIN GAGAL
+
+      else{
+
+        alert("Username atau password salah!");
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
